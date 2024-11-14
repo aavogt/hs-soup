@@ -197,21 +197,21 @@ catThese = concatMap \case
 
 lookupLE :: (Int, Int) -> MM a -> [((Int, Int), Set a)]
 lookupLE (l, c) m =
-  let (u, mr, _) = M.splitLookup l m
+  let (b, mr, _) = M.splitLookup l m
       consMR = maybe id (\r rest -> (l, r) : rest) mr
    in catMaybes
         [ f <$> M.lookupLE c r
-          | (k, r) <- consMR $ M.toDescList u,
+          | (k, r) <- consMR $ M.toDescList b,
             let f (a, b) = ((k, a), b)
         ]
 
 lookupGE :: (Int, Int) -> MM a -> [((Int, Int), Set a)]
 lookupGE (l, c) m =
-  let (u, mr, _) = M.splitLookup l m
+  let (_, mr, e) = M.splitLookup l m
       consMR = maybe id (\r rest -> (l, r) : rest) mr
    in catMaybes
         [ f <$> M.lookupGE c r
-          | (k, r) <- consMR $ M.toAscList u,
+          | (k, r) <- consMR $ M.toAscList e,
             let f (a, b) = ((k, a), b)
         ]
 
