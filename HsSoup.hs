@@ -15,10 +15,8 @@ module HsSoup where
 
 import Data.Data (typeOf)
 import Data.Function (on)
-import Data.Generics (GenericQ, everything, ext1Q, extQ, mkQ)
 import Data.IntMap (IntMap)
 import qualified Data.IntMap as M
-import Data.Kind (Type)
 import Data.List (groupBy)
 import Data.Maybe (catMaybes)
 import Data.Set (Set)
@@ -67,6 +65,15 @@ import GHC.Types.SrcLoc
   )
 import GHC.Utils.Error (DiagOpts (DiagOpts))
 import Generics.SYB
+  ( Data (gmapQ, gmapQi),
+    GenericQ,
+    Proxy (..),
+    Typeable,
+    cast,
+    everything,
+    typeOf,
+    typeRep,
+  )
 
 -- * Public API
 
