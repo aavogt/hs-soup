@@ -177,9 +177,9 @@ instance (Ord a) => Monoid (SMM a) where
 -- | The outer key is the line number, the inner key is the column number
 type MM a = IntMap (IntMap (Set a))
 
--- | Should return the smallest span that contains the point
--- an interval tree may be better, but hgeometry has not been updated on hackage
--- should it return a list?
+-- | Should return the smallest span that contains the point.
+-- Perhaps it should return a list which would be sorted by distance
+-- to the farthest endpoint of the span?
 smmLookup :: (Ord a) => (Int, Int) -> SMM a -> Maybe (RealSrcSpan, a)
 smmLookup k (SMM m n) = go Set.empty $ concatMap (Set.toList . snd) $ catThese $ lookupLE k m `align` lookupGE k n
   where
