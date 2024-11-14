@@ -1,0 +1,34 @@
+name: hs-soup
+author: Adam Vogt <vogt.adam@gmail.com>
+license: BSD2
+synopsis: Lex and tag haskell source with the ghc api
+description: The hs-soup package calls the GHC API parser
+  and splits the input according to the SrcSpans in the syntax
+  tree. This simplified view of ghc's syntax is intended to make
+  it easier to write preprocessors.
+
+
+  The name comes from tagsoup, which presents a similar interface
+  to html/xml
+
+tested-with: GHC == 9.6.6
+
+dependencies:
+  - base
+  - ghc
+  - containers
+  - syb
+  - semialign
+  - these
+library:
+  source-dirs:
+    - .
+
+tests:
+    golden:
+      main: tests.hs
+      source-dirs: .
+      dependencies:
+        - hspec
+        - hspec-golden
+        - pretty-show

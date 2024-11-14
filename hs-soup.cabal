@@ -1,0 +1,55 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.37.0.
+--
+-- see: https://github.com/sol/hpack
+
+name:           hs-soup
+version:        0.0.0
+synopsis:       Lex and tag haskell source with the ghc api
+description:    The hs-soup package calls the GHC API parser and splits the input according to the SrcSpans in the syntax tree. This simplified view of ghc's syntax is intended to make it easier to write preprocessors.
+                .
+                The name comes from tagsoup, which presents a similar interface to html/xml
+author:         Adam Vogt <vogt.adam@gmail.com>
+maintainer:     Adam Vogt <vogt.adam@gmail.com>
+license:        BSD2
+license-file:   LICENSE
+build-type:     Simple
+tested-with:
+    GHC == 9.6.6
+
+library
+  exposed-modules:
+      HsSoup
+  other-modules:
+      Paths_hs_soup
+  hs-source-dirs:
+      ./
+  build-depends:
+      base
+    , containers
+    , ghc
+    , semialign
+    , syb
+    , these
+  default-language: Haskell2010
+
+test-suite golden
+  type: exitcode-stdio-1.0
+  main-is: tests.hs
+  other-modules:
+      HsSoup
+      Paths_hs_soup
+  hs-source-dirs:
+      ./
+  build-depends:
+      base
+    , containers
+    , ghc
+    , hspec
+    , hspec-golden
+    , pretty-show
+    , semialign
+    , syb
+    , these
+  default-language: Haskell2010
